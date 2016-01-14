@@ -16,14 +16,10 @@
 #include <iomanip>
 using namespace std;
 
-
-const char ROFLcopter[] = R"( :LOL:LOL:LOL:LOL:LOL:LOL
-           |
- L    /---------
- O=====       []\
- L     \         \
-        \_______-+|
-       ____T____T___/)";
+struct scoreboard {
+	string name, difficulty;
+	unsigned int points;
+};
 
 int difficulty = 1;
 int yU, yD, xO,score=-1;
@@ -46,46 +42,34 @@ void startScreen() {
 	ifstream ecranPrincipal, animation1, animation2;
 	ecranPrincipal.open("F:\\Scoala\\Anul I\\Sem I\\IP\\ROFLcopter\\Art\\startScreen.txt");
 	animation1.open("F:\\Scoala\\Anul I\\Sem I\\IP\\ROFLcopter\\Art\\animation1.txt");
-	animation2.open("F:\\Scoala\\Anul I\\Sem I\\IP\\ROFLcopter\\Art\\animation2.txt");
-	do {
-		gotoxy(0, y);
-		while (!ecranPrincipal.eof()) {
-			getline(ecranPrincipal, text);
-			cout << setw(55) << "";
-			cout << text << endl;
+	gotoxy(0, 15);
+	while (!ecranPrincipal.eof()) {
+		getline(ecranPrincipal, text);
+		cout << setw(55) << "";
+		cout << text << endl;
 		}
-		ecranPrincipal.seekg(0);
-		while (!animation1.eof()) {
-			getline(animation1, text);
-			cout << setw(90) << "";
-			cout << text << endl;
-		}
-		animation1.seekg(0);
-		cout << endl;
-		cout << setw(120) << "PRESS ANY KEY TO CONTINUE...";
-		Sleep(100);
-		system("CLS");
-		gotoxy(0, y);
-		while (!ecranPrincipal.eof()) {
-			getline(ecranPrincipal, text);
-			cout << setw(55) << "";
-			cout << text << endl;
-		}
-		ecranPrincipal.seekg(0);
-		while (!animation2.eof()) {
-			getline(animation2, text);
-			cout << setw(90) << "";
-			cout << text << endl;
-		}
-		animation2.seekg(0);
-		cout << endl;
-		cout << setw(120) << "PRESS ANY KEY TO CONTINUE...";
-		Sleep(100);
-		system("CLS");
-	} while (_kbhit() == 0);
 	ecranPrincipal.close();
-	animation1.close();
-	animation2.close();
+	while (!animation1.eof()) {
+		getline(animation1, text);
+		cout << setw(90) << "";
+		cout << text << endl;
+		}
+	gotoxy(90, 26);
+	cout << "          LOL           ";
+	do {
+	gotoxy(89, 26);
+	cout << "          ";
+	gotoxy(103, 26);
+	cout << ":ROFL:ROFL";
+	gotoxy(90, 35);
+	cout << "[Press any key to continue]";
+	Sleep(100);
+	gotoxy(103, 26);
+	cout << "          ";
+	gotoxy(90, 26);
+	cout<<"ROFL:ROFL:";
+	Sleep(100);
+	} while (!_kbhit());
 	
 };
 
@@ -100,15 +84,15 @@ void chooseDif() {
 	cout << "2 - NORMAL" << endl;
 	gotoxy(100, 26);
 	cout << "3 - EPILEPTIC" << endl;
-	cin >> x;
+	x = _getch();
 	switch (x) {
-	case 1:
+	case 49:
 		difficulty = 1;
 		break;
-	case 2:
+	case 50:
 		difficulty = 2;
 		break;
-	case 3:
+	case 51:
 		difficulty = 3;
 		break;
 	default:
@@ -329,7 +313,6 @@ void credits() {
 
 };
 
-
 void startMenu() {
 	system("CLS");
 	int x=0;
@@ -341,15 +324,15 @@ void startMenu() {
 	cout << "2 - SCOREBOARD" << endl;
 	gotoxy(100, 26);
 	cout  <<"3 - CREDITS" << endl;
-	cin >> x;
+	x = _getch();
 	switch (x) {
-	case 1:
+	case 49:
 		play();
 		break;
-	case 2:
+	case 50:
 		scoreBoard();
 		break;
-	case 3:
+	case 51:
 		credits();
 		break;
 	default:

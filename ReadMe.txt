@@ -1,6 +1,9 @@
 ========================================================================
     CONSOLE APPLICATION : ROFLcopter Project Overview
 ========================================================================
+Please install Visual C++ Redistributable to run this game on a PC which does not have
+Visual Studio 2015 installed. You can find it in the appdir/debug/vs_redist.x86-64/
+
 
 ROFLcopter was created as a homework project for my 1st year introducting to C++
 class.

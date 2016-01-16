@@ -1,9 +1,6 @@
-// ROFLcopter.cpp : Defines the entry point for the console application.
-//
+// ROFLcopter - A C++ Console Game.
 
-/*string text;
-	
-	*/
+
 
 #include "stdafx.h"
 #include <iostream>
@@ -14,12 +11,15 @@
 #include <fstream>
 #include <conio.h>
 #include <iomanip>
+
 using namespace std;
 
-struct scoreboard {
-	string name, difficulty;
-	unsigned int points;
-};
+
+
+struct scoreB {
+	string name[10], level[10];
+	unsigned int pts[10];
+}; //board, aux;
 
 int difficulty = 1;
 int yU, yD, xO,score=-1;
@@ -56,6 +56,8 @@ void startScreen() {
 		}
 	gotoxy(90, 26);
 	cout << "          LOL           ";
+	gotoxy(155, 16);
+	cout << "ver 1.2";
 	do {
 	gotoxy(89, 26);
 	cout << "          ";
@@ -112,12 +114,6 @@ void resetxO() {
 
 void animation(int yC,int xO) {
 	int xC = 10;
-	for (int k = 0;k < 3;k++) {
-		gotoxy(xC, yC - k);
-		cout <<"                           ";
-		gotoxy(xC, yC + 7 + k);
-		cout <<"                           ";
-	}
 	gotoxy(xC, yC + 1);
 	cout << "           |           ";
 	gotoxy(xC, yC + 2);
@@ -131,7 +127,7 @@ void animation(int yC,int xO) {
 	gotoxy(xC, yC + 6);
 	cout << "       ____T____T___/) ";
 	gotoxy(xC, yC);
-	cout << "         :LOL:ROFL:ROFL";
+	cout << "         :LOL:ROFL:ROFL"; //23 spaces
 	Sleep(50);
 	gotoxy(xC, yC);
 	cout << "  ROFL:ROFL:LOL:           ";
@@ -158,6 +154,9 @@ void gameOver() {
 		cout << setw(55) << "";
 		cout << text << endl;
 	}
+	if (difficulty == 1) diff = "(EASY)";
+	else if (difficulty == 2) diff = "(NORMAL)";
+	else diff = "(EPILEPTIC)";
 	Beep(300, 700);
 	over.close();
 	gotoxy(90, 30);
@@ -165,9 +164,21 @@ void gameOver() {
 	gotoxy(90, 33);
 	cout << "Enter your name: ";
 	cin >> name;
-	if (difficulty == 1) diff = "(EASY)";
-	else if (difficulty == 2) diff = "(NORMAL)";
-	else diff = "(EPILEPTIC)";
+	/*for (int i = 0;i < 9;i++) {
+		if (board.pts[i] < score)
+		{
+			aux.pts[0] = board.pts[i];
+			aux.name[0] = board.name[i];
+			aux.level[0] = board.level[i];
+			board.pts[i + 1] = aux.pts[0];
+			board.name[i + 1] = aux.name[0];
+			board.level[i + 1] = aux.level[0];
+			board.pts[i] = score;
+			board.name[i] = name;
+			board.level[i] = diff;
+		}
+	}
+	*/
 	scoreBoard.open("F:\\Scoala\\Anul I\\Sem I\\IP\\ROFLcopter\\scoreBoard.txt", ios::app);
 	scoreBoard << name << " "<<diff<<"\n";
 	scoreBoard << score << "\n";
@@ -187,17 +198,23 @@ void play() {
 	while (!collision) {
 		animation(yC, xO);
 		yC+=1;
+			gotoxy(xC, yC - 1);
+			cout << "                           ";
 		xO -= 5+ceil(difficulty*2.5);
 		if (xO < 7) resetxO();
 		if (_kbhit()) {
 			_getch();
 			yC -= 3;
-			Sleep(50);
+			for (int k = 0;k < 3;k++) {
+				gotoxy(xC, yC + 7 + k);
+				cout << "                           ";
+			}
 		}
-		gotoxy(0, 48);
-		cout << "SCORE:" << score;
+		gotoxy(0, 47);
+		cout << "SCORE: " << score << endl;
+		cout << "DIFFICULTY: " << difficulty;
 		if (yC > 41 || yC<1) collision = true;
-		if (xO<26 && (yC<yU || (yC+7) > yD)) collision = true;
+		if (xO<26 && (yC<=yU || (yC+7) >= yD)) collision = true;
 	}
 	gameOver();
 };
@@ -210,6 +227,16 @@ void scoreBoard() {
 	scoreBoard.open("F:\\Scoala\\Anul I\\Sem I\\IP\\ROFLcopter\\scoreBoard.txt");
 	gotoxy(90, 14);
 	cout << "**********SCORE BOARD**********"; //31
+	/*for (int i = 0; i < 9; i++) {
+		gotoxy(90, 15 + k);
+		cout << "*   " << board.name[i]<<" "<<board.level[i];
+		gotoxy(117, 15 + k);
+		cout << board.pts[i];
+		gotoxy(120, 15 + k);
+		cout << "*";
+		k++;
+	}
+	*/  
 	while (!scoreBoard.eof()) {
 		getline(scoreBoard, board);
 		getline(scoreBoard, points);
@@ -227,6 +254,7 @@ void scoreBoard() {
 	scoreBoard.close();
 	gotoxy(90, 15 + k + 1);
 	system("pause");
+	system("CLS");
 };
 
 void credits() {
@@ -339,36 +367,17 @@ void startMenu() {
 		startMenu();
 		break;
 	}
-
+	startMenu();
 };
 
 int main()
 {
-	char again;
+	int x;
 		system("Color 1A");
 		system("Mode 650");
 		startScreen();
 		startMenu();
-		system("CLS");
-		gotoxy(90, 30);
-		cout << "Play again? [Y/N]";
-		cin >> again;
-		if (again == 'y' || again == 'Y') play();
-		else 
-		{
-			system("CLS");
-			gotoxy(90, 30);
-			cout << "Go back to Menu? [Y/N]";
-			cin >> again;
-			if (again == 'y' || again == 'Y') startMenu();
-			else {
-				system("CLS");
-				gotoxy(90, 30);
-				cout << "Thank you for playing!";
-			}
-			Sleep(1750);
-			return 0;
-		}
+		return 0;
 };
 
 

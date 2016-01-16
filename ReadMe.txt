@@ -2,39 +2,37 @@
     CONSOLE APPLICATION : ROFLcopter Project Overview
 ========================================================================
 
-AppWizard has created this ROFLcopter application for you.
+ROFLcopter was created as a homework project for my 1st year introducting to C++
+class.
 
-This file contains a summary of what you will find in each of the files that
-make up your ROFLcopter application.
+It is similar to Flappy Bird, although it stretched more horizontally than vertically. 
+The real inspiration is the flash game "Chopper".
+
+The gameplay is simple: press any key for the ROFLcopter to go up and do not crash into the wall of WTF.
 
 
-ROFLcopter.vcxproj
-    This is the main project file for VC++ projects generated using an Application Wizard.
-    It contains information about the version of Visual C++ that generated the file, and
-    information about the platforms, configurations, and project features selected with the
-    Application Wizard.
 
-ROFLcopter.vcxproj.filters
-    This is the filters file for VC++ projects generated using an Application Wizard. 
-    It contains information about the association between the files in your project 
-    and the filters. This association is used in the IDE to show grouping of files with
-    similar extensions under a specific node (for e.g. ".cpp" files are associated with the
-    "Source Files" filter).
 
-ROFLcopter.cpp
-    This is the main application source file.
+========================================================================
+CHANGELOG
+========================================================================
 
-/////////////////////////////////////////////////////////////////////////////
-Other standard files:
+v1.2:
 
-StdAfx.h, StdAfx.cpp
-    These files are used to build a precompiled header (PCH) file
-    named ROFLcopter.pch and a precompiled types file named StdAfx.obj.
+- fixed some minor ghosting issues
+- reworked the main menu so that it does not crash while viewing the Scoreboard
+- reworked the collision system to be more accurate
+- removed unnecessarry ASCII art files
 
-/////////////////////////////////////////////////////////////////////////////
-Other notes:
+v1.1:
 
-AppWizard uses "TODO:" comments to indicate parts of the source code you
-should add to or customize.
+- changed splash screen animation to use gotoxy() function instead of
+reading from text file
+- started the implementation of a struct type scoreboard for easier
+sorting
 
-/////////////////////////////////////////////////////////////////////////////
+v1.0:
+
+- changed the propeller animation from :LOL: to :ROFL: 
+- added menu number options
+- added credits

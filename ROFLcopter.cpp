@@ -21,6 +21,7 @@ struct scoreB {
 	unsigned int pts[10];
 }; //board, aux;
 
+const char version[] = "v1.2.1";
 int difficulty = 1;
 int yU, yD, xO,score=-1;
 bool collision = false;
@@ -40,8 +41,8 @@ void startScreen() {
 	y = 15;
 	bool exit = false;
 	ifstream ecranPrincipal, animation1, animation2;
-	ecranPrincipal.open("F:\\Scoala\\Anul I\\Sem I\\IP\\ROFLcopter\\Art\\startScreen.txt");
-	animation1.open("F:\\Scoala\\Anul I\\Sem I\\IP\\ROFLcopter\\Art\\animation1.txt");
+	ecranPrincipal.open("startScreen.dat");
+	animation1.open("animation1.dat");
 	gotoxy(0, 15);
 	while (!ecranPrincipal.eof()) {
 		getline(ecranPrincipal, text);
@@ -57,7 +58,7 @@ void startScreen() {
 	gotoxy(90, 26);
 	cout << "          LOL           ";
 	gotoxy(155, 16);
-	cout << "ver 1.2";
+	cout << version;
 	do {
 	gotoxy(89, 26);
 	cout << "          ";
@@ -134,7 +135,7 @@ void animation(int yC,int xO) {
 	Sleep(50);
 	gotoxy(xC, yC);
 	cout << "         :LOL:ROFL:ROFL";
-	for (int i = 0;i < 49;i++)
+	for (int i = 0;i < 47;i++)
 		if (i <= yU || i >= yD) {
 			gotoxy(xO, i);
 			cout << "WTF:WTF:WTF";
@@ -147,7 +148,7 @@ void gameOver() {
 	ifstream over;
 	ofstream scoreBoard;
 	string text, name, again,diff;
-	over.open("F:\\Scoala\\Anul I\\Sem I\\IP\\ROFLcopter\\Art\\gameOver.txt");
+	over.open("gameOver.dat");
 	gotoxy(0, 15);
 	while (!over.eof()) {
 		getline(over, text);
@@ -179,7 +180,7 @@ void gameOver() {
 		}
 	}
 	*/
-	scoreBoard.open("F:\\Scoala\\Anul I\\Sem I\\IP\\ROFLcopter\\scoreBoard.txt", ios::app);
+	scoreBoard.open("scoreBoard.dat", ios::app);
 	scoreBoard << name << " "<<diff<<"\n";
 	scoreBoard << score << "\n";
 	scoreBoard.close();
@@ -210,7 +211,7 @@ void play() {
 				cout << "                           ";
 			}
 		}
-		gotoxy(0, 47);
+		gotoxy(0, 45);
 		cout << "SCORE: " << score << endl;
 		cout << "DIFFICULTY: " << difficulty;
 		if (yC > 41 || yC<1) collision = true;
@@ -224,7 +225,7 @@ void scoreBoard() {
 	string board,points,diff;
 	int k=0,i = 0;
 	ifstream scoreBoard;
-	scoreBoard.open("F:\\Scoala\\Anul I\\Sem I\\IP\\ROFLcopter\\scoreBoard.txt");
+	scoreBoard.open("scoreBoard.dat");
 	gotoxy(90, 14);
 	cout << "**********SCORE BOARD**********"; //31
 	/*for (int i = 0; i < 9; i++) {
@@ -262,7 +263,7 @@ void credits() {
 	ifstream credits;
 	string text;
 	system("CLS");
-	credits.open("F:\\Scoala\\Anul I\\Sem I\\IP\\ROFLcopter\\Art\\credits.txt");
+	credits.open("credits.dat");
 	do {
 		while (!credits.eof()) {
 			getline(credits, text);

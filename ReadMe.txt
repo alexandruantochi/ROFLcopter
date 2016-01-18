@@ -20,6 +20,12 @@ The gameplay is simple: press any key for the ROFLcopter to go up and do not cra
 CHANGELOG
 ========================================================================
 
+v1.2.1:
+
+- removed text files from "Art" folder, replaced them with .dat files for release
+- changed the height of :WTF: walls and "Score" for better compatibility with 1080p screens 
+(still not compatible with lower resolutions)
+
 v1.2:
 
 - fixed some minor ghosting issues

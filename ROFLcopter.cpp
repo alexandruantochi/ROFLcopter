@@ -14,14 +14,7 @@
 
 using namespace std;
 
-
-
-struct scoreB {
-	string name[10], level[10];
-	unsigned int pts[10];
-}; //board, aux;
-
-const char version[] = "v1.2.1";
+const char version[] = "v1.2.1 [1080p compatible]";
 int difficulty = 1;
 int yU, yD, xO,score=-1;
 bool collision = false;
@@ -373,7 +366,6 @@ void startMenu() {
 
 int main()
 {
-	int x;
 		system("Color 1A");
 		system("Mode 650");
 		startScreen();

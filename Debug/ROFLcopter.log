@@ -1,9 +1,19 @@
-﻿Build started 16-Jan-16 19:43:13.
+﻿Build started 24-Jan-16 20:06:56.
      1>Project "F:\Scoala\Anul I\Sem I\IP\ROFLcopter\ROFLcopter.vcxproj" on node 2 (Build target(s)).
-     1>Link:
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Yu"stdafx.h" /Fp"Debug\ROFLcopter.pch" /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt ROFLcopter.cpp
+         ROFLcopter.cpp
+     1>f:\scoala\anul i\sem i\ip\roflcopter\roflcopter.cpp(96): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+     1>f:\scoala\anul i\sem i\ip\roflcopter\roflcopter.cpp(192): warning C4244: '-=': conversion from 'double' to 'int', possible loss of data
+     1>f:\scoala\anul i\sem i\ip\roflcopter\roflcopter.cpp(302): warning C4244: 'argument': conversion from 'double' to 'DWORD', possible loss of data
+     1>f:\scoala\anul i\sem i\ip\roflcopter\roflcopter.cpp(310): warning C4244: 'argument': conversion from 'double' to 'DWORD', possible loss of data
+     1>f:\scoala\anul i\sem i\ip\roflcopter\roflcopter.cpp(360): warning C4717: 'startMenu': recursive on all control paths, function will cause runtime stack overflow
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"F:\Scoala\Anul I\Sem I\IP\ROFLcopter\Debug\ROFLcopter.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"F:\Scoala\Anul I\Sem I\IP\ROFLcopter\Debug\ROFLcopter.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\Scoala\Anul I\Sem I\IP\ROFLcopter\Debug\ROFLcopter.lib" /MACHINE:X86 Debug\ROFLcopter.obj
+         Debug\stdafx.obj
          ROFLcopter.vcxproj -> F:\Scoala\Anul I\Sem I\IP\ROFLcopter\Debug\ROFLcopter.exe
      1>Done Building Project "F:\Scoala\Anul I\Sem I\IP\ROFLcopter\ROFLcopter.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.58
+Time Elapsed 00:00:02.06

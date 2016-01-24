@@ -14,9 +14,9 @@
 
 using namespace std;
 
-const char version[] = "v1.2.1 [1080p compatible]";
+const char version[] = "v1.2.3 [1080p compatible]";
 int difficulty = 1;
-int yU, yD, xO,score=-1;
+int upperWallOpening, lowerWallOpening, wallPosition,score=-1;
 bool collision = false;
 
 void gotoxy(int x, int y)
@@ -29,10 +29,6 @@ void gotoxy(int x, int y)
 
 void startScreen() {
 	string text;
-	int x, y;
-	x = 0;
-	y = 15;
-	bool exit = false;
 	ifstream ecranPrincipal, animation1, animation2;
 	ecranPrincipal.open("startScreen.dat");
 	animation1.open("animation1.dat");
@@ -66,7 +62,6 @@ void startScreen() {
 	cout<<"ROFL:ROFL:";
 	Sleep(100);
 	} while (!_kbhit());
-	
 };
 
 void chooseDif() {
@@ -99,9 +94,9 @@ void chooseDif() {
 
 void resetxO() {
 	srand(time(NULL));
-	yU = rand() % 35 + 5 - difficulty;
-	yD = yU + 18 - 2 * difficulty;
-	xO = 210;
+	upperWallOpening = rand() % 35 + 5 - difficulty;
+	lowerWallOpening = upperWallOpening + 18 - 2 * difficulty;
+	wallPosition = 195;
 	score++;
 	system("CLS");
 }
@@ -129,7 +124,7 @@ void animation(int yC,int xO) {
 	gotoxy(xC, yC);
 	cout << "         :LOL:ROFL:ROFL";
 	for (int i = 0;i < 47;i++)
-		if (i <= yU || i >= yD) {
+		if (i <= upperWallOpening || i >= lowerWallOpening) {
 			gotoxy(xO, i);
 			cout << "WTF:WTF:WTF";
 			gotoxy(xO +11, i);
@@ -190,12 +185,12 @@ void play() {
 	collision = false;
 	resetxO();
 	while (!collision) {
-		animation(yC, xO);
+		animation(yC, wallPosition);
 		yC+=1;
 			gotoxy(xC, yC - 1);
 			cout << "                           ";
-		xO -= 5+ceil(difficulty*2.5);
-		if (xO < 7) resetxO();
+		wallPosition -= 5+ceil(difficulty*2.5);
+		if (wallPosition < 7) resetxO();
 		if (_kbhit()) {
 			_getch();
 			yC -= 3;
@@ -208,7 +203,7 @@ void play() {
 		cout << "SCORE: " << score << endl;
 		cout << "DIFFICULTY: " << difficulty;
 		if (yC > 41 || yC<1) collision = true;
-		if (xO<26 && (yC<=yU || (yC+7) >= yD)) collision = true;
+		if (wallPosition<26 && (yC<=upperWallOpening || (yC+7) >= lowerWallOpening)) collision = true;
 	}
 	gameOver();
 };

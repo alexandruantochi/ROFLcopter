@@ -19,6 +19,12 @@ The gameplay is simple: press any key for the ROFLcopter to go up and do not cra
 ========================================================================
 CHANGELOG
 ========================================================================
+v1.2.3:
+
+- changed the start position for the :WTF: wall on the X-axis to resolve 
+some flickering issues
+- removed unused variables, changed some names to be more intuitive
+
 v1.2.2:
 
 -minor changes in the code, deleted unnecessary files

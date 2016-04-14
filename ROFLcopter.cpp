@@ -14,7 +14,7 @@
 
 using namespace std;
 
-const char version[] = "v1.2.3 [1080p compatible]";
+const char *version = "v1.2.4 [1080p compatible]";
 int difficulty = 1;
 int upperWallOpening, lowerWallOpening, wallPosition,score=-1;
 bool collision = false;
@@ -153,21 +153,6 @@ void gameOver() {
 	gotoxy(90, 33);
 	cout << "Enter your name: ";
 	cin >> name;
-	/*for (int i = 0;i < 9;i++) {
-		if (board.pts[i] < score)
-		{
-			aux.pts[0] = board.pts[i];
-			aux.name[0] = board.name[i];
-			aux.level[0] = board.level[i];
-			board.pts[i + 1] = aux.pts[0];
-			board.name[i + 1] = aux.name[0];
-			board.level[i + 1] = aux.level[0];
-			board.pts[i] = score;
-			board.name[i] = name;
-			board.level[i] = diff;
-		}
-	}
-	*/
 	scoreBoard.open("scoreBoard.dat", ios::app);
 	scoreBoard << name << " "<<diff<<"\n";
 	scoreBoard << score << "\n";
@@ -215,17 +200,7 @@ void scoreBoard() {
 	ifstream scoreBoard;
 	scoreBoard.open("scoreBoard.dat");
 	gotoxy(90, 14);
-	cout << "**********SCORE BOARD**********"; //31
-	/*for (int i = 0; i < 9; i++) {
-		gotoxy(90, 15 + k);
-		cout << "*   " << board.name[i]<<" "<<board.level[i];
-		gotoxy(117, 15 + k);
-		cout << board.pts[i];
-		gotoxy(120, 15 + k);
-		cout << "*";
-		k++;
-	}
-	*/  
+	cout << "**********SCORE BOARD**********"; 
 	while (!scoreBoard.eof()) {
 		getline(scoreBoard, board);
 		getline(scoreBoard, points);
